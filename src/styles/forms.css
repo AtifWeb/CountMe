@@ -1,0 +1,44 @@
+* {
+  box-sizing: border-box;
+}
+
+input[type=value] {
+  width: 8%;
+  height: 3%;
+  font-size: 17px;
+  margin-top: 5px;
+}
+
+input[type=submit] {
+  margin-top: 5px;
+  font-size: 17px;
+  margin-left: 15px;
+  width: 20%;
+  border-color: rgb(234, 127, 255);
+}
+
+select {
+  width: 8%;
+  height: 3%;
+  font-size: 17px;
+  margin-bottom: 3px;
+  margin-top: 3px;
+}
+
+#inputs {
+  width: 10%;
+  font-size: 17px;
+  margin-left: 15px;
+  margin-bottom: 3px;
+  margin-top: 3px;
+}
+
+.BMIresult, .kcalResult {
+  background-color: rgb(58, 150, 150);
+  width: 10%;
+  font-size: 17px;
+  margin-left: 15px;
+  margin-bottom: 10px;
+  margin-top: 3px;
+
+}

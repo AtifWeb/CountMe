@@ -1,0 +1,423 @@
+/**======================================================================
+=========================================================================
+Template Name: Datta Able Free Admin Template
+Author: Codedthemes
+supports: https://codedthemes.support-hub.io/
+File: style.css
+=========================================================================
+=========================================================================
+  == Table of Contents==
+	- Generic classes
+		-	Margin, Padding, Font class, text align, position, floating, overflow, background class, text color, display class, boarder class
+	- Theme Elements
+		-	Accordion, Button, tabs, typography, buttons, box shadow, Lable & Badges, Alert, Pagination, Breadcumb, Cards, Collapse,
+        -   Carousel, Grid, Progress, Model, tooltip, popover, Datepicker, Gridstack, lightbox, notification, Nestable, pnotify, rating,
+        -   Rangeslider, Slider, Syntax Highlighter, Tour, Treeview, Toolbar, Session Timeout, Session idle Timeout, offline, Animation
+    - Forms
+        -   Forms Elements, Advance Form Control, Validation, Masking, Wizard, Picker, Select
+	- Pages
+		-   Chat, authentication, Maintenance, Maps, Landingpage messages, task, Todo, Notes, Charts, Icons, Gallery, Editors,
+        -   Invoice, Full Calender, File Upload,
+=================================================================================
+=================================================================================== */
+@import "~bootstrap/dist/css/bootstrap";
+// General theme contents
+@import "partials/variables";
+@import "partials/general";
+@import "partials/generic";
+@import "partials/mixins/function";
+
+// important Element
+@import "partials/menu/menu-lite";
+@import "partials/widget/widget";
+
+// Theme Element
+@import "partials/theme-elements/form";
+@import "partials/theme-elements/radiobox-checkbox";
+@import "partials/theme-elements/labels-badges";
+@import "partials/theme-elements/data-tables";
+@import "partials/theme-elements/authentication";
+@import "partials/theme-elements/button";
+@import "partials/theme-elements/alert";
+@import "partials/theme-elements/breadcrumb-pagination";
+@import "partials/theme-elements/progress";
+@import "partials/theme-elements/tooltip";
+@import "partials/theme-elements/popover";
+@import "partials/theme-elements/nav";
+@import "partials/theme-elements/modal";
+
+// Other
+@import "partials/other/chat";
+@import "partials/other/prism";
+@import "partials/other/Switches";
+
+@import "partials/other/chart";
+@import "partials/other/icon-lauouts";
+
+@import "partials/third-party/third-party";
+
+@import url("https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap");
+
+// CountProfile
+.header_wrapper_mbl {
+  display: none;
+}
+.CountProfile {
+  position: fixed;
+  left: 0px;
+  top: 0px;
+  background: rgba(17, 17, 26, 0.4);
+  width: 100%;
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  z-index: 999;
+  justify-content: center;
+}
+.CountProfile > form {
+  background-color: #fff;
+  width: 450px;
+  padding: 1.5rem;
+  border-radius: 10px;
+  padding-top: 3rem;
+  position: relative;
+}
+
+.CountProfile .close_icon {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  cursor: pointer;
+}
+.dashbaord {
+  height: 100vh;
+  background-color: #fafcfe;
+  font-family: "Poppins", sans-serif !important;
+  display: flex;
+}
+.SidebarDashboard {
+  min-width: 270px;
+  background-color: #fff;
+  box-shadow: rgba(17, 17, 26, 0.05) 0px 1px 0px,
+    rgba(17, 17, 26, 0.1) 0px 0px 8px;
+  height: 100vh;
+  padding: 2rem 1rem;
+}
+.SidebarDashboard > h1 {
+  font-size: 35px;
+  font-weight: 700;
+  text-align: center;
+  text-transform: uppercase;
+}
+.SidebarDashboard > h1 span {
+  color: #09a9f5;
+}
+.SidebarDashboard nav {
+  list-style: none;
+  margin-top: 2rem;
+}
+
+.SidebarDashboard nav a {
+  display: flex;
+  color: #333;
+  text-decoration: none;
+  align-items: center;
+
+  padding: 0rem 20px;
+  height: 50px;
+  border-radius: 10px;
+}
+.SidebarDashboard nav a > *:first-child {
+  margin-right: 10px;
+}
+.SidebarDashboard nav a.active {
+  background-color: #09a9f5;
+  color: #fff;
+}
+.SidebarDashboard nav > * + * {
+  margin-top: 1rem;
+}
+
+.dashboard_body {
+  height: 100vh;
+  overflow-y: auto;
+  padding: 2rem 3rem;
+  display: flex;
+  width: 100%;
+}
+.user_area {
+  flex: 1;
+  width: 100%;
+
+  display: flex;
+  flex-direction: column;
+}
+.user_area .left_area img {
+  width: 180px;
+  height: 180px;
+  border-radius: 50%;
+}
+.user_area .top_area {
+  display: flex;
+  align-items: center;
+}
+.user_area .top_area .left_area {
+  margin-right: 1.5rem;
+}
+.user_area .top_area h1 {
+  font-weight: 600;
+  font-size: 30px;
+  text-transform: uppercase;
+}
+.user_area .top_area h1 span {
+  color: #09a9f5;
+}
+.user_area .top_area button {
+  border: none;
+  outline: none;
+  height: 50px;
+  background-color: #09a9f5;
+  color: #fff;
+  padding: 0rem 1rem;
+  text-transform: uppercase;
+  font-weight: 600;
+  border-radius: 10px;
+}
+.user_area .top_area .butons_wrapper > * + * {
+  margin-left: 1rem;
+}
+
+// bottom_area
+.user_area .bottom_area {
+  flex: 1;
+
+  display: flex;
+  align-items: center;
+}
+.user_area .bottom_area .form_wrapper {
+  border: 1px solid #ddd;
+  width: 550px;
+}
+.user_area .bottom_area .form_wrapper > h1 {
+  font-size: 20px;
+  padding: 1.5rem 1rem;
+
+  margin-bottom: 1rem;
+  text-align: center;
+  border-bottom: 1px solid #ddd;
+  font-weight: 600;
+  color: #333;
+  text-transform: uppercase;
+}
+.user_area .bottom_area .form_wrapper > h1 + form {
+  padding: 2rem 1rem;
+}
+
+.form-select {
+  font-size: 14px !important;
+  height: 45px !important;
+}
+
+// dashboard_body_add
+.dashboard_body_add {
+  display: block;
+}
+.dashboard_body_add .button_wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  margin-bottom: 2rem;
+}
+.dashboard_body_add table .Edit {
+  color: #f4c511;
+}
+.dashboard_body_add table .Del {
+  color: #ee0000;
+}
+.dashboard_body_add table .Fav.active {
+  color: #ee0000;
+}
+.dashboard_body_add .table td,
+.dashboard_body_add .table th {
+  font-size: 17px;
+  font-weight: 600;
+  color: #333;
+  text-transform: uppercase;
+}
+.dashboard_body_add .table th {
+  font-size: 16px;
+}
+.dashboard_body_add .table td {
+  height: 50px;
+}
+.dashboard_body_add .table td div {
+  display: flex;
+  align-items: center;
+}
+.dashboard_body_add .table td div {
+  height: 100%;
+}
+
+// calender
+
+.fc .fc-daygrid-day.fc-day-today {
+  background-color: #09a9f5 !important;
+  color: #fff !important;
+}
+
+.fc .fc-daygrid-day-number {
+  color: #333 !important;
+  font-size: 16px !important;
+}
+
+.fc .fc-daygrid-day.fc-day-today .fc-daygrid-day-number {
+  color: #fff !important;
+}
+
+// dashboard body
+.dashboard_body_Home {
+  display: flex;
+  flex-direction: column;
+}
+.dashboard_body .buttons_wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0rem 1rem;
+  flex: 1;
+}
+.dashboard_body .chart_wrapper {
+  height: 65%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.dashboard_body .buttons_wrapper > * + * {
+  margin-left: 1rem;
+}
+.dashboard_body .buttons_wrapper button {
+  border: none;
+  outline: none;
+  height: 50px;
+  width: 200px;
+  background-color: #09a9f5;
+  color: #fff;
+  padding: 0rem 1rem;
+  text-transform: uppercase;
+  font-weight: 600;
+  border-radius: 10px;
+}
+
+.dashboard_body_Home {
+  padding-left: 5rem;
+  width: 800px;
+}
+.green {
+  color: green;
+}
+
+.red {
+  color: #ee0000;
+}
+
+.information_wrapper {
+  width: 80%;
+}
+
+.information_wrapper form {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-gap: 1rem;
+}
+
+.information_wrapper form button {
+  grid-column: span 2;
+}
+@media screen and (max-width: 1150px) {
+  .information_wrapper {
+    width: 100%;
+  }
+}
+
+@media screen and (max-width: 1050px) {
+  .user_area .top_area {
+    flex-direction: column;
+  }
+  .user_area .top_area h1 {
+    text-align: center;
+  }
+  .user_area .top_area .left_area {
+    margin-right: 0px;
+    margin-bottom: 1rem;
+  }
+}
+@media screen and (max-width: 870px) {
+  .header_wrapper_mbl {
+    display: flex;
+    justify-content: flex-end;
+
+    padding: 1rem;
+  }
+  .SidebarDashboard {
+    position: fixed;
+    left: 0px;
+    top: 0px;
+    height: 100vh;
+    max-width: 250px;
+    left: -100%;
+    transition: 0.5s ease all;
+  }
+  .SidebarDashboard > h1 {
+    font-size: 25px;
+  }
+  .SidebarDashboard.active {
+    left: 0px;
+  }
+  .dashbaord {
+    flex-direction: column;
+  }
+  .dashboard_body_Home {
+    width: 100%;
+  }
+  .dashboard_body_Home {
+    padding-left: 3rem;
+  }
+}
+
+@media screen and (max-width: 600px) {
+  .user_area .top_area .right_side .butons_wrapper {
+    display: flex;
+    flex-direction: column;
+  }
+  .user_area .top_area .right_side .butons_wrapper {
+    margin-bottom: 1rem;
+  }
+  .user_area .top_area .right_side .butons_wrapper button {
+    width: 100%;
+  }
+  .user_area .top_area .butons_wrapper > * + * {
+    margin-left: 0px;
+    margin-top: 10px;
+  }
+  .dashboard_body {
+    padding: 2rem 1rem;
+  }
+}
+@media screen and (max-width: 450px) {
+  .dashboard_body .buttons_wrapper {
+    flex-direction: column;
+    justify-content: center;
+  }
+  .dashboard_body .buttons_wrapper > * + * {
+    margin-left: 0px;
+    margin-top: 1rem;
+  }
+  .information_wrapper form > * {
+    grid-column: span 2;
+  }
+  .CountProfile > form {
+    width: 100%;
+    height: 100vh;
+    border-radius: 0px;
+  }
+}

@@ -1,0 +1,78 @@
+/**  =====================
+      Progress css start
+==========================  **/
+@keyframes progress-bar-stripes {
+  from {
+    background-position: 16px 0;
+  }
+
+  to {
+    background-position: 0 0;
+  }
+}
+
+.progress {
+  height: 12px;
+  font-size: 10px;
+  background-color: $theme-background;
+  border-radius: 0;
+  overflow: visible;
+}
+
+.progress-bar {
+  background-color: $primary-color;
+  box-shadow: 0 10px 20px 0 rgba(0, 0, 0, 0.3);
+
+  @each $value in $color-name {
+    $i: index($color-name, $value);
+
+    &.progress-#{$value} {
+      background: nth($color-color, $i);
+    }
+  }
+
+  &.progress-c-theme {
+    background: $theme-color;
+  }
+
+  &.progress-c-theme2 {
+    background: $theme-color2;
+  }
+}
+
+.expenses-current.progress,
+.income-current.progress {
+  height: 40px;
+  font-size: 15px;
+  margin-bottom: 15px;
+}
+
+.expenses-current.progress .progress-bar {
+  background: linear-gradient(-90deg,
+      rgba(255, 1, 1, 1) 0%,
+      rgba(253, 104, 29, 1) 50%,
+      rgba(252, 216, 69, 1) 100%);
+}
+
+.income.progress,
+.expenses.progress {
+  height: 20px;
+  font-size: 13px;
+  margin-bottom: 20px;
+}
+
+.expenses.progress .progress-bar {
+  background-color: #db0404
+}
+
+.income-current.progress .progress-bar {
+  background: linear-gradient(90deg, rgba(2, 0, 36, 1) 0%, rgba(9, 121, 110, 1) 0%, rgba(0, 212, 255, 1) 100%);
+
+}
+
+.circle_reactGradientProgress__1iWe_ {
+  margin: auto;
+  display: block !important;
+}
+
+/**====== Progress css end ======**/

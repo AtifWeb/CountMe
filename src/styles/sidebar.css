@@ -1,0 +1,65 @@
+.topbar {
+  line-height: 1;
+  padding: 3px;
+}
+
+.topbar .navbar-nav {
+  flex-flow: row;
+}
+
+.navbar-nav .dropdown-menu {
+  position: absolute;
+}
+
+.dropdown-menu-right {
+  left: auto !important;
+  right: 0 !important;
+}
+
+.nav-item {
+  padding-right: 5px;
+}
+
+main {
+  padding-top: 55px;
+}
+
+.sidebar {
+  height: 100%;
+  padding-top: 2.5rem;
+  left: 0;
+  top: 0;
+  position: fixed;
+}
+
+.sidebar-sticky {
+  position: relative;
+  height: calc(100vh - 48px);
+}
+
+@supports ((position: -webkit-sticky) or (position: sticky)) {
+  .sidebar-sticky {
+    position: -webkit-sticky;
+    position: sticky;
+  }
+}
+
+@media (max-width: 892px) {
+  .sidebar {
+    position: sticky !important;
+    height: auto;
+  }
+
+  .sidebar-sticky {
+    height: auto;
+  }
+
+}
+
+
+@media (min-width: 892px) {
+  [role="main"] {
+    padding-top: 48px;
+    /* Space for fixed navbar */
+  }
+}
