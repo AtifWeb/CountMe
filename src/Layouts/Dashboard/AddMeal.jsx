@@ -9,11 +9,18 @@ import CreateIcon from "@material-ui/icons/Create";
 import DeleteIcon from "@material-ui/icons/Delete";
 import FavoriteIcon from "@material-ui/icons/Favorite";
 import { IconButton } from "@material-ui/core";
-import AddForm from "../../App/components/Dashboard/AddForm";
+import AddFormMeal from "../../App/components/Dashboard/AddFormMeal";
 import MenuIcon from "@material-ui/icons/Menu";
-import { BASEURL } from "../../api/countMe";
-import axios from "axios";
-
+import AddAlarmIcon from "@material-ui/icons/AddAlarm";
+import {
+  addMeal,
+  deleteMeal,
+  addMealFav,
+  updateMeals,
+} from "../../store/actions";
+import countMe from "../../api/countMe";
+import { toast } from "react-toastify";
+import CalenderAddMeal from "../../App/components/Dashboard/CalenderAddMeal";
 class AddMeal extends React.Component {
   createColorArray = () => {
     if (this.props.colorsArray.length === 0) {
@@ -25,25 +32,33 @@ class AddMeal extends React.Component {
   };
   state = {
     popup_active: false,
+    popup_active_update: false,
     sidebarMBL: false,
+    popup_active_calender: true,
     MealArray: [],
   };
 
-  GetAllMeals = (e) => {
-    axios
-      .get(`${BASEURL}/api/Meal/GetAll`)
+  getAllMeals = () => {
+    countMe
+      .get("/api/Meal/GetAll")
       .then((response) => {
         this.setState({
-          MealArray: response,
+          MealArray: response.data,
         });
+        console.log("workng");
       })
-      .catch((err) => {
-        console.log(err);
+      .catch((error) => {
+        console.log("Not Working Inner");
+        const errorMessage = error.response
+          ? error.response.data.error
+          : error.message;
+
+        toast.error(errorMessage);
       });
   };
 
   componentDidMount() {
-    this.GetAllMeals();
+    this.getAllMeals();
   }
 
   render() {
@@ -59,7 +74,8 @@ class AddMeal extends React.Component {
           />
         </div>
         {this.state.popup_active && (
-          <AddForm
+          <AddFormMeal
+            AddMeal={addMeal}
             ClosePopForm={(e) =>
               this.setState({
                 popup_active: false,
@@ -68,6 +84,26 @@ class AddMeal extends React.Component {
           />
         )}
 
+        {this.state.popup_active_calender && (
+          <CalenderAddMeal
+            ClosePopForm={(e) =>
+              this.setState({
+                popup_active_calender: false,
+              })
+            }
+          />
+        )}
+
+        {this.state.popup_active_update && (
+          <AddFormMeal
+            AddMeal={updateMeals}
+            ClosePopForm={(e) =>
+              this.setState({
+                popup_active_update: false,
+              })
+            }
+          />
+        )}
         <Sidebar header_active={1} active={this.state.sidebarMBL} />
         <div className="dashboard_body dashboard_body_add">
           <div className="button_wrapper">
@@ -137,13 +173,40 @@ class AddMeal extends React.Component {
                     <div>{EachMeal.weight}</div>
                   </td>
                   <td>
-                    <IconButton>
+                    <IconButton
+                      onClick={(e) => {
+                        window.sessionStorage.setItem("meal_id", EachMeal.id);
+                        this.setState({
+                          popup_active_calender: true,
+                        });
+                      }}
+                    >
+                      <AddAlarmIcon />
+                    </IconButton>
+
+                    <IconButton
+                      onClick={(e) => {
+                        this.setState({
+                          popup_active_update: true,
+                        });
+                      }}
+                    >
                       <CreateIcon className="Edit" />
                     </IconButton>
-                    <IconButton>
+                    <IconButton
+                      onClick={(e) => {
+                        deleteMeal(EachMeal.id);
+                      }}
+                    >
                       <DeleteIcon className="Del" />
                     </IconButton>
-                    <IconButton>
+                    <IconButton
+                      onClick={(e) => {
+                        addMealFav({
+                          id: EachMeal.id,
+                        });
+                      }}
+                    >
                       <FavoriteIcon className="Fav" />
                     </IconButton>
                   </td>
@@ -158,9 +221,7 @@ class AddMeal extends React.Component {
 }
 
 const mapDispatchToProps = (dispatch) => {
-  return {
-    // getAllMeals: () => dispatch(getAllMeals()),
-  };
+  return {};
 };
 
 export default connect(mapDispatchToProps)(AddMeal);

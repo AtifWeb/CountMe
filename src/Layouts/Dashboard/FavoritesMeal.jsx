@@ -8,8 +8,8 @@ import DeleteIcon from "@material-ui/icons/Delete";
 import AddAlarmIcon from "@material-ui/icons/AddAlarm";
 import { IconButton } from "@material-ui/core";
 import MenuIcon from "@material-ui/icons/Menu";
-import { BASEURL } from "../../api/countMe";
-import axios from "axios";
+import countMe from "../../api/countMe";
+import { toast } from "react-toastify";
 class FavoritesMeal extends React.Component {
   createColorArray = () => {
     if (this.props.colorsArray.length === 0) {
@@ -24,21 +24,27 @@ class FavoritesMeal extends React.Component {
     FavArr: [],
   };
 
-  GetFavMeal = (e) => {
-    axios
-      .get(`${BASEURL}/api/Favorites/GetAllFavoriteProducts`)
+  GetFavMeals = () => {
+    countMe
+      .get("/api/Favorites/GetAllFavoriteMeals")
       .then((response) => {
         this.setState({
-          FavArr: response,
+          FavArr: response.data,
         });
+        console.log("workng");
       })
-      .catch((err) => {
-        console.log(err);
+      .catch((error) => {
+        console.log("Not Working Inner");
+        const errorMessage = error.response
+          ? error.response.data.error
+          : error.message;
+
+        toast.error(errorMessage);
       });
   };
 
   componentDidMount() {
-    this.GetFavMeal();
+    this.GetFavMeals();
   }
 
   render() {

@@ -3,12 +3,15 @@ import "chartjs-plugin-labels";
 import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
 import CloseIcon from "@material-ui/icons/Close";
-class CountProfileBMI extends React.Component {
+import { ProductCalender } from "../../../store/actions";
+class CalenderAddProduct extends React.Component {
+  constructor(props) {
+    super(props);
+  }
   state = {
-    weight: "",
-    height: "",
+    dateTime: "",
+    mealType: 0,
   };
-
   render() {
     return (
       <div className="CountProfile">
@@ -22,52 +25,51 @@ class CountProfileBMI extends React.Component {
             <CloseIcon />
           </span>
           <Form.Group className="mb-3" controlId="formBasicEmail">
-            <Form.Label>Height</Form.Label>
+            <Form.Label>Date</Form.Label>
             <Form.Control
-              type="text"
-              placeholder="Enter Height"
+              type="date"
+              placeholder="24.08.2022"
               onChange={(e) => {
                 this.setState({
-                  height: e.target.value,
+                  dateTime: e.target.value,
                 });
               }}
-              value={this.state.height}
             />
           </Form.Group>
+
           <Form.Group className="mb-3" controlId="formBasicEmail">
-            <Form.Label>Weight</Form.Label>
-            <Form.Control
-              type="text"
-              placeholder="Enter Weight"
+            <Form.Label>Meal Type</Form.Label>
+            <Form.Select
               onChange={(e) => {
                 this.setState({
-                  weight: e.target.value,
+                  mealType: e.target.value,
                 });
               }}
-              value={this.state.weight}
-            />
+            >
+              <option value="0">breakfast</option>
+              <option value="1">lunch</option>
+              <option value="2">dinner</option>
+            </Form.Select>
           </Form.Group>
           <Button
             variant="primary"
             type="submit"
             onClick={(e) => {
               e.preventDefault();
+              let Object = {
+                date: this.state.dateTime,
+                mealType: this.state.mealType,
+                productId: window.sessionStorage.getItem("product_id"),
+              };
 
-              this.props.CountEvent({
-                weight: Number(this.state.weight),
-                height: Number(this.state.height),
-              });
+              ProductCalender(Object);
             }}
           >
-            Count BMI
+            ADD
           </Button>
-          <Form.Group className="mt-3" controlId="formBasicEmail">
-            <Form.Label>Results</Form.Label>
-            <Form.Control type="text" placeholder="Results" />
-          </Form.Group>
         </Form>
       </div>
     );
   }
 }
-export default CountProfileBMI;
+export default CalenderAddProduct;

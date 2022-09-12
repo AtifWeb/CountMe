@@ -7,11 +7,10 @@ import Sidebar from "../../App/components/Dashboard/Sidebar";
 import DeleteIcon from "@material-ui/icons/Delete";
 import AddAlarmIcon from "@material-ui/icons/AddAlarm";
 import { IconButton } from "@material-ui/core";
-import CheckIcon from "@material-ui/icons/Check";
-import CloseIcon from "@material-ui/icons/Close";
 import MenuIcon from "@material-ui/icons/Menu";
-import { BASEURL } from "../../api/countMe";
-import axios from "axios";
+import { DeleteProductFav } from "../../store/actions";
+import countMe from "../../api/countMe";
+import { toast } from "react-toastify";
 class FavoritesProducts extends React.Component {
   createColorArray = () => {
     if (this.props.colorsArray.length === 0) {
@@ -26,16 +25,22 @@ class FavoritesProducts extends React.Component {
     FavArr: [],
   };
 
-  GetFavProduct = (e) => {
-    axios
-      .get(`${BASEURL}/api/Favorites/GetAllFavoriteProduct`)
+  GetFavProduct = () => {
+    countMe
+      .get("/api/Favorites/GetAllFavoriteProducts")
       .then((response) => {
         this.setState({
-          FavArr: response,
+          FavArr: response.data,
         });
+        console.log("workng");
       })
-      .catch((err) => {
-        console.log(err);
+      .catch((error) => {
+        console.log("Not Working Inner");
+        const errorMessage = error.response
+          ? error.response.data.error
+          : error.message;
+
+        toast.error(errorMessage);
       });
   };
 
@@ -118,7 +123,11 @@ class FavoritesProducts extends React.Component {
                     <IconButton>
                       <AddAlarmIcon />
                     </IconButton>
-                    <IconButton>
+                    <IconButton
+                      onClick={(e) => {
+                        DeleteProductFav(EachProduct.id);
+                      }}
+                    >
                       <DeleteIcon className="Del" />
                     </IconButton>
                   </td>
@@ -133,10 +142,7 @@ class FavoritesProducts extends React.Component {
 }
 
 const mapDispatchToProps = (dispatch) => {
-  return {
-    //getAllProducts: () => dispatch(getAllProducts()),
-    // getAllMeals: () => dispatch(getAllMeals())
-  };
+  return {};
 };
 
 export default connect(mapDispatchToProps)(FavoritesProducts);

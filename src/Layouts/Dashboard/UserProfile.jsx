@@ -11,7 +11,12 @@ import UpdateProfile from "../../App/components/Dashboard/UpdateProfile";
 import CountProfileBMI from "../../App/components/Dashboard/CountProfileBMI";
 import ChangePassword from "../../App/components/Dashboard/ChangePassword";
 import MenuIcon from "@material-ui/icons/Menu";
-import { getUserProfile, logOut } from "../../store/actions";
+import {
+  getUserProfile,
+  logOut,
+  CountBMIUser,
+  CountCalories,
+} from "../../store/actions";
 class UserProfile extends React.Component {
   state = {
     popup_active: false,
@@ -47,6 +52,7 @@ class UserProfile extends React.Component {
         </div>
         {this.state.popup_active && (
           <CountProfile
+            CountEvent={CountCalories}
             ClosePopForm={(e) =>
               this.setState({
                 popup_active: false,
@@ -66,6 +72,7 @@ class UserProfile extends React.Component {
 
         {this.state.popup_activeBMI && (
           <CountProfileBMI
+            CountEvent={CountBMIUser}
             ClosePopForm={(e) =>
               this.setState({
                 popup_activeBMI: false,

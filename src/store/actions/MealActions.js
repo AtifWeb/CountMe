@@ -1,22 +1,11 @@
 import countMe from "../../api/countMe";
 import { authHeader } from "../../api/headerHelper";
 
-import {
-  DELETE_PRODUCT_SUCCESS,
-  DELETE_PRODUCT_ERROR,
-  ADD_PRODUCT_SUCCESS,
-  ADD_PRODUCT_ERROR,
-  GET_ALL_PRODUCTS_SUCCESS,
-  GET_ALL_PRODUCTS_ERROR,
-  UPDATE_PRODUCT_SUCCESS,
-  UPDATE_PRODUCT_ERROR,
-} from "./types";
 import { toast } from "react-toastify";
-import { reset } from "redux-form";
 
-export const getAllProducts = () => {
+export const getAllMeals = () => {
   countMe
-    .post("/api/Product/GetAll", { headers: authHeader() })
+    .post("/api/Meal/GetAll", { headers: authHeader() })
     .then((response) => {
       console.log("workkng");
     })
@@ -30,7 +19,7 @@ export const getAllProducts = () => {
     });
 };
 
-export const addProduct = (formValues) => {
+export const addMeal = (formValues) => {
   countMe
     .post("/api/Product/Create", { ...formValues }, { headers: authHeader() })
     .then((response) => {
@@ -48,32 +37,10 @@ export const addProduct = (formValues) => {
     });
 };
 
-export const ProductCalender = (formValues) => {
+export const addMealFav = (formValues) => {
   countMe
     .post(
-      "/api/ProductDay/AddProductToCalender",
-      { ...formValues },
-      { headers: authHeader() }
-    )
-    .then((response) => {
-      console.log("Working");
-
-      toast.success("Successfully added to calender");
-    })
-    .catch((error) => {
-      console.log("Not Working");
-      const errorMessage = error.response
-        ? error.response.data.error
-        : error.message;
-
-      toast.error(errorMessage);
-    });
-};
-
-export const addProductFav = (formValues) => {
-  countMe
-    .post(
-      "/api/Favorites/AddProductToFavorites",
+      "/api/Favorites/AddMealToFavorites",
       { ...formValues },
       { headers: authHeader() }
     )
@@ -91,9 +58,9 @@ export const addProductFav = (formValues) => {
     });
 };
 
-export const DeleteProductFav = (id) => {
+export const DeleteMealFav = (id) => {
   countMe
-    .delete(`/api/Favorites/DeleteProductFromFavorites/${id}`, {
+    .delete(`/api/Favorites/DeleteMealFromFavorites/${id}`, {
       headers: authHeader(),
     })
     .then((response) => {
@@ -110,15 +77,15 @@ export const DeleteProductFav = (id) => {
     });
 };
 
-export const deleteProduct = (productId) => {
+export const deleteMeal = (productId) => {
   countMe
-    .delete(`/api/Product/Delete/${productId}`, {
+    .delete(`/api/Meal/Delete/${productId}`, {
       headers: authHeader(),
     })
     .then(() => {
       console.log("working");
 
-      toast.warn("Product deleted");
+      toast.warn("Meal deleted");
     })
     .catch((error) => {
       console.log("not working");
@@ -130,10 +97,10 @@ export const deleteProduct = (productId) => {
     });
 };
 
-export const updateProduct = (formValues, productId) => {
+export const updateMeals = (formValues, productId) => {
   countMe
     .put(
-      `/api/Product/Update/${productId}`,
+      `/api/Meal/Update/${productId}`,
       { ...formValues },
       { headers: authHeader() }
     )
@@ -142,6 +109,29 @@ export const updateProduct = (formValues, productId) => {
       toast.success("Successfully updated product");
     })
     .catch((error) => {
+      console.log(error);
+      const errorMessage = error.response
+        ? error.response.data.error
+        : error.message;
+
+      toast.error(errorMessage);
+    });
+};
+
+export const MealsCalender = (formValues) => {
+  countMe
+    .post(
+      "/api/MealDay/AddMealToCalender",
+      { ...formValues },
+      { headers: authHeader() }
+    )
+    .then((response) => {
+      console.log("Working");
+
+      toast.success("Successfully added to calender");
+    })
+    .catch((error) => {
+      console.log("Not Working");
       const errorMessage = error.response
         ? error.response.data.error
         : error.message;

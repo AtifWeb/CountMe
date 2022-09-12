@@ -10,7 +10,7 @@ class AddForm extends React.Component {
 
   state = {
     name: "",
-    brand: "",
+    weight: 0,
     calories: 0,
     protein: 0,
     carbohydrate: 0,
@@ -43,16 +43,16 @@ class AddForm extends React.Component {
             />
           </Form.Group>
           <Form.Group className="mb-3" controlId="formBasicEmail">
-            <Form.Label>Enter Brand</Form.Label>
+            <Form.Label>Enter Weight</Form.Label>
             <Form.Control
               type="text"
-              placeholder="Enter Brand"
+              placeholder="Enter Weight"
               onChange={(e) => {
                 this.setState({
-                  brand: e.target.value,
+                  weight: e.target.value,
                 });
               }}
-              value={this.state.brand}
+              value={this.state.weight}
             />
           </Form.Group>
           <Form.Group className="mb-3" controlId="formBasicEmail">
@@ -113,7 +113,7 @@ class AddForm extends React.Component {
             onClick={(e) => {
               e.preventDefault();
 
-              this.props.AddProductComp({
+              this.props.AddMeal({
                 name: this.state.name,
                 brand: this.state.brand,
                 calories: Number(this.state.calories),
@@ -124,7 +124,7 @@ class AddForm extends React.Component {
                 saturatedFat: 0,
                 fibre: 0,
                 salt: 0,
-                isServing: true,
+                weight: Number(this.state.weight),
               });
             }}
           >

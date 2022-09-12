@@ -5,15 +5,23 @@ import Table from "react-bootstrap/Table";
 import "../../assets/scss/style.scss";
 import Sidebar from "../../App/components/Dashboard/Sidebar";
 import Button from "react-bootstrap/Button";
-
 import { IconButton } from "@material-ui/core";
 import AddForm from "../../App/components/Dashboard/AddForm";
-import CheckIcon from "@material-ui/icons/Check";
 import MenuIcon from "@material-ui/icons/Menu";
+import CalenderAddProduct from "../../App/components/Dashboard/CalenderAddProduct";
 import AddAlarmIcon from "@material-ui/icons/AddAlarm";
-import { BASEURL } from "../../api/countMe";
-import axios from "axios";
-import { getAllProducts, addProduct, deleteProduct } from "../../store/actions";
+import FavoriteIcon from "@material-ui/icons/Favorite";
+import CreateIcon from "@material-ui/icons/Create";
+import DeleteIcon from "@material-ui/icons/Delete";
+
+import {
+  addProduct,
+  deleteProduct,
+  addProductFav,
+  updateProduct,
+} from "../../store/actions";
+import countMe from "../../api/countMe";
+import { toast } from "react-toastify";
 class AddProduct extends React.Component {
   createColorArray = () => {
     if (this.props.colorsArray.length === 0) {
@@ -25,30 +33,33 @@ class AddProduct extends React.Component {
   };
   state = {
     popup_active: false,
+    popup_active_update: false,
     sidebarMBL: false,
     ProductArray: [],
+    popup_active_calender: false,
   };
 
-  // GetAllProducts = (e) => {
-  //   axios
-  //     .get(`${BASEURL}/api/Meal/GetAll`)
-  //     .then((response) => {
-  //       this.setState({
-  //         ProductArray: response,
-  //       });
-  //     })
-  //     .catch((err) => {
-  //       console.log(err);
-  //     });
-  // };
+  getAllProducts = () => {
+    countMe
+      .get("/api/Product/GetAll")
+      .then((response) => {
+        this.setState({
+          ProductArray: response.data,
+        });
+        console.log("workng");
+      })
+      .catch((error) => {
+        console.log("Not Working Inner");
+        const errorMessage = error.response
+          ? error.response.data.error
+          : error.message;
+
+        toast.error(errorMessage);
+      });
+  };
 
   componentDidMount() {
-    if (this.props.getProducts() != undefined) {
-      this.setState({
-        ProductArray: this.props.getProducts(),
-      });
-    }
-    console.log(this.props.getProducts());
+    this.getAllProducts();
   }
 
   render() {
@@ -63,9 +74,19 @@ class AddProduct extends React.Component {
             }
           />
         </div>
+        {this.state.popup_active_calender && (
+          <CalenderAddProduct
+            ClosePopForm={(e) =>
+              this.setState({
+                popup_active_calender: false,
+              })
+            }
+          />
+        )}
+
         {this.state.popup_active && (
           <AddForm
-            AddProductRedux={this.props.addProduct}
+            AddProductRedux={addProduct}
             ClosePopForm={(e) =>
               this.setState({
                 popup_active: false,
@@ -73,7 +94,16 @@ class AddProduct extends React.Component {
             }
           />
         )}
-
+        {this.state.popup_active_update && (
+          <AddForm
+            AddProductComp={updateProduct}
+            ClosePopForm={(e) =>
+              this.setState({
+                popup_active_update: false,
+              })
+            }
+          />
+        )}
         <Sidebar header_active={2} active={this.state.sidebarMBL} />
         <div className="dashboard_body dashboard_body_add">
           <div className="button_wrapper">
@@ -146,15 +176,43 @@ class AddProduct extends React.Component {
                     <div>{EachProduct.isServing}</div>
                   </td>
                   <td>
-                    <IconButton>
-                      <CheckIcon className="Edit" />
+                    <IconButton
+                      onClick={(e) => {
+                        window.sessionStorage.setItem(
+                          "product_id",
+                          EachProduct.id
+                        );
+                        this.setState({
+                          popup_active_calender: true,
+                        });
+                      }}
+                    >
+                      <AddAlarmIcon />
                     </IconButton>
                     <IconButton
                       onClick={(e) => {
-                        this.props.removeProduct(EachProduct.id);
+                        deleteProduct(EachProduct.id);
                       }}
                     >
-                      <AddAlarmIcon className="Del" />
+                      <DeleteIcon className="Del" />
+                    </IconButton>
+                    <IconButton
+                      onClick={(e) => {
+                        this.setState({
+                          popup_active_update: true,
+                        });
+                      }}
+                    >
+                      <CreateIcon className="Edit" />
+                    </IconButton>
+                    <IconButton
+                      onClick={(e) => {
+                        addProductFav({
+                          id: EachProduct.id,
+                        });
+                      }}
+                    >
+                      <FavoriteIcon className="Fav" />
                     </IconButton>
                   </td>
                 </tr>
@@ -168,11 +226,7 @@ class AddProduct extends React.Component {
 }
 
 const mapDispatchToProps = (dispatch) => {
-  return {
-    getProducts: () => dispatch(getAllProducts()),
-    addProduct: () => dispatch(addProduct()),
-    removeProduct: () => dispatch(deleteProduct()),
-  };
+  return {};
 };
 
 export default connect(null, mapDispatchToProps)(AddProduct);

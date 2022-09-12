@@ -33,3 +33,37 @@ export const getUserProfile = () => (dispatch) => {
       }
     });
 };
+export const CountBMIUser = (formValues) => {
+  countMe
+    .post(
+      "/api/Users/CountBMI/CountBMI",
+      { ...formValues },
+      {
+        headers: authHeader(),
+      }
+    )
+    .then((response) => {
+      toast.success("Successfully Counted BMI");
+      console.log(response);
+    })
+    .catch((error) => {
+      toast.error("Error Occured");
+    });
+};
+export const CountCalories = (formValues) => {
+  countMe
+    .post(
+      "/api/Users/CountCalories/CountCalories",
+      { ...formValues },
+      {
+        headers: authHeader(),
+      }
+    )
+    .then((response) => {
+      toast.success("Successfully Counted Calories");
+      console.log(response);
+    })
+    .catch((error) => {
+      toast.error("Error Occured");
+    });
+};
