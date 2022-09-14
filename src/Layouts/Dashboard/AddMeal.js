@@ -5,24 +5,23 @@ import Table from "react-bootstrap/Table";
 import "../../assets/scss/style.scss";
 import Sidebar from "../../App/components/Dashboard/Sidebar";
 import Button from "react-bootstrap/Button";
-import { IconButton } from "@material-ui/core";
-import AddForm from "../../App/components/Dashboard/AddForm";
-import MenuIcon from "@material-ui/icons/Menu";
-import CalenderAddProduct from "../../App/components/Dashboard/CalenderAddProduct";
-import AddAlarmIcon from "@material-ui/icons/AddAlarm";
-import FavoriteIcon from "@material-ui/icons/Favorite";
 import CreateIcon from "@material-ui/icons/Create";
 import DeleteIcon from "@material-ui/icons/Delete";
-
+import FavoriteIcon from "@material-ui/icons/Favorite";
+import { IconButton } from "@material-ui/core";
+import AddFormMeal from "../../App/components/Dashboard/AddFormMeal";
+import MenuIcon from "@material-ui/icons/Menu";
+import AddAlarmIcon from "@material-ui/icons/AddAlarm";
 import {
-  addProduct,
-  deleteProduct,
-  addProductFav,
-  updateProduct,
+  addMeal,
+  deleteMeal,
+  addMealFav,
+  updateMeals,
 } from "../../store/actions";
 import countMe from "../../api/countMe";
 import { toast } from "react-toastify";
-class AddProduct extends React.Component {
+import CalendarAddMeal from "../../App/components/Dashboard/CalendarAddMeal";
+class AddMeal extends React.Component {
   createColorArray = () => {
     if (this.props.colorsArray.length === 0) {
       for (var i = 0; i < 30; i++) {
@@ -35,16 +34,16 @@ class AddProduct extends React.Component {
     popup_active: false,
     popup_active_update: false,
     sidebarMBL: false,
-    ProductArray: [],
-    popup_active_calender: false,
+    popup_active_calendar: false,
+    MealArray: [],
   };
 
-  getAllProducts = () => {
+  getAllMeals = () => {
     countMe
-      .get("/api/Product/GetAll")
+      .get("/api/Meal/GetAll")
       .then((response) => {
         this.setState({
-          ProductArray: response.data,
+          MealArray: response.data,
         });
         console.log("workng");
       })
@@ -59,7 +58,7 @@ class AddProduct extends React.Component {
   };
 
   componentDidMount() {
-    this.getAllProducts();
+    this.getAllMeals();
   }
 
   render() {
@@ -74,19 +73,9 @@ class AddProduct extends React.Component {
             }
           />
         </div>
-        {this.state.popup_active_calender && (
-          <CalenderAddProduct
-            ClosePopForm={(e) =>
-              this.setState({
-                popup_active_calender: false,
-              })
-            }
-          />
-        )}
-
         {this.state.popup_active && (
-          <AddForm
-            AddProductRedux={addProduct}
+          <AddFormMeal
+            AddMeal={addMeal}
             ClosePopForm={(e) =>
               this.setState({
                 popup_active: false,
@@ -94,9 +83,20 @@ class AddProduct extends React.Component {
             }
           />
         )}
+
+        {this.state.popup_active_calendar && (
+          <CalendarAddMeal
+            ClosePopForm={(e) =>
+              this.setState({
+                popup_active_calendar: false,
+              })
+            }
+          />
+        )}
+
         {this.state.popup_active_update && (
-          <AddForm
-            AddProductComp={updateProduct}
+          <AddFormMeal
+            AddMeal={updateMeals}
             ClosePopForm={(e) =>
               this.setState({
                 popup_active_update: false,
@@ -104,7 +104,7 @@ class AddProduct extends React.Component {
             }
           />
         )}
-        <Sidebar header_active={2} active={this.state.sidebarMBL} />
+        <Sidebar header_active={1} active={this.state.sidebarMBL} />
         <div className="dashboard_body dashboard_body_add">
           <div className="button_wrapper">
             <Button
@@ -115,7 +115,7 @@ class AddProduct extends React.Component {
                 });
               }}
             >
-              Add new Product
+              Add new Meal
             </Button>
           </div>
           <Table responsive>
@@ -123,7 +123,6 @@ class AddProduct extends React.Component {
               <tr>
                 <th>ID</th>
                 <th>Name</th>
-                <th>Brand</th>
                 <th>Calories</th>
                 <th>Protein</th>
                 <th>Carbohydrate</th>
@@ -132,70 +131,59 @@ class AddProduct extends React.Component {
                 <th>Saturated Fat</th>
                 <th>Fibre</th>
                 <th>Salt</th>
-                <th>Serving</th>
+                <th>Weight</th>
                 <th>Actions</th>
               </tr>
             </thead>
             <tbody>
-              {this.state.ProductArray.forEach((EachProduct) => (
+              {this.state.MealArray.forEach((EachMeal) => (
                 <tr>
                   <td>
-                    <div>{EachProduct.id}</div>
+                    <div>{EachMeal.id}</div>
                   </td>
                   <td>
-                    <div>{EachProduct.name}</div>
+                    <div>{EachMeal.name}</div>
                   </td>
                   <td>
-                    <div>{EachProduct.brand}</div>
+                    <div>{EachMeal.calories}</div>
+                  </td>
+
+                  <td>
+                    <div>{EachMeal.protein}</div>
                   </td>
                   <td>
-                    <div>{EachProduct.calories}</div>
+                    <div>{EachMeal.carbohydrate}</div>
                   </td>
                   <td>
-                    <div>{EachProduct.protein}</div>
+                    <div>{EachMeal.sugar}</div>
                   </td>
                   <td>
-                    <div>{EachProduct.carbohydrate}</div>
+                    <div>{EachMeal.fat}</div>
                   </td>
                   <td>
-                    <div>{EachProduct.sugar}</div>
+                    <div>{EachMeal.saturatedFat}</div>
                   </td>
                   <td>
-                    <div>{EachProduct.fat}</div>
+                    <div>{EachMeal.fibre}</div>
                   </td>
                   <td>
-                    <div>{EachProduct.saturatedFat}</div>
+                    <div>{EachMeal.salt}</div>
                   </td>
                   <td>
-                    <div>{EachProduct.fibre}</div>
-                  </td>
-                  <td>
-                    <div>{EachProduct.salt}</div>
-                  </td>
-                  <td>
-                    <div>{EachProduct.isServing}</div>
+                    <div>{EachMeal.weight}</div>
                   </td>
                   <td>
                     <IconButton
                       onClick={(e) => {
-                        window.sessionStorage.setItem(
-                          "product_id",
-                          EachProduct.id
-                        );
+                        window.sessionStorage.setItem("meal_id", EachMeal.id);
                         this.setState({
-                          popup_active_calender: true,
+                          popup_active_calendar: true,
                         });
                       }}
                     >
                       <AddAlarmIcon />
                     </IconButton>
-                    <IconButton
-                      onClick={(e) => {
-                        deleteProduct(EachProduct.id);
-                      }}
-                    >
-                      <DeleteIcon className="Del" />
-                    </IconButton>
+
                     <IconButton
                       onClick={(e) => {
                         this.setState({
@@ -207,8 +195,15 @@ class AddProduct extends React.Component {
                     </IconButton>
                     <IconButton
                       onClick={(e) => {
-                        addProductFav({
-                          id: EachProduct.id,
+                        deleteMeal(EachMeal.id);
+                      }}
+                    >
+                      <DeleteIcon className="Del" />
+                    </IconButton>
+                    <IconButton
+                      onClick={(e) => {
+                        addMealFav({
+                          id: EachMeal.id,
                         });
                       }}
                     >
@@ -229,4 +224,4 @@ const mapDispatchToProps = (dispatch) => {
   return {};
 };
 
-export default connect(null, mapDispatchToProps)(AddProduct);
+export default connect(mapDispatchToProps)(AddMeal);

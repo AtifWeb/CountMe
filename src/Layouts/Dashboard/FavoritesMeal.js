@@ -10,6 +10,7 @@ import { IconButton } from "@material-ui/core";
 import MenuIcon from "@material-ui/icons/Menu";
 import countMe from "../../api/countMe";
 import { toast } from "react-toastify";
+import { DeleteMealFav } from "../../store/actions";
 class FavoritesMeal extends React.Component {
   createColorArray = () => {
     if (this.props.colorsArray.length === 0) {
@@ -120,7 +121,12 @@ class FavoritesMeal extends React.Component {
                       <AddAlarmIcon />
                     </IconButton>
                     <IconButton>
-                      <DeleteIcon className="Del" />
+                      <DeleteIcon
+                        className="Del"
+                        onClick={(e) => {
+                          DeleteMealFav(EachMeal.id);
+                        }}
+                      />
                     </IconButton>
                   </td>
                 </tr>

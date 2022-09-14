@@ -3,8 +3,8 @@ import "chartjs-plugin-labels";
 import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
 import CloseIcon from "@material-ui/icons/Close";
-import { ProductCalender } from "../../../store/actions";
-class CalenderAddProduct extends React.Component {
+import { ProductCalendar } from "../../../store/actions";
+class CalendarAddProduct extends React.Component {
   constructor(props) {
     super(props);
   }
@@ -62,7 +62,7 @@ class CalenderAddProduct extends React.Component {
                 productId: window.sessionStorage.getItem("product_id"),
               };
 
-              ProductCalender(Object);
+              ProductCalendar(Object);
             }}
           >
             ADD
@@ -72,4 +72,4 @@ class CalenderAddProduct extends React.Component {
     );
   }
 }
-export default CalenderAddProduct;
+export default CalendarAddProduct;

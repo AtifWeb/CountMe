@@ -9,7 +9,7 @@ import Form from "react-bootstrap/Form";
 import CountProfile from "../../App/components/Dashboard/CountProfile";
 import UpdateProfile from "../../App/components/Dashboard/UpdateProfile";
 import CountProfileBMI from "../../App/components/Dashboard/CountProfileBMI";
-import ChangePassword from "../../App/components/Dashboard/ChangePassword";
+
 import MenuIcon from "@material-ui/icons/Menu";
 import {
   getUserProfile,
@@ -22,7 +22,6 @@ class UserProfile extends React.Component {
     popup_active: false,
     popup_active_update: false,
     popup_activeBMI: false,
-    popup_active_password: false,
     sidebarMBL: false,
   };
   createColorArray = () => {
@@ -56,15 +55,6 @@ class UserProfile extends React.Component {
             ClosePopForm={(e) =>
               this.setState({
                 popup_active: false,
-              })
-            }
-          />
-        )}
-        {this.state.popup_active_password && (
-          <ChangePassword
-            ClosePopForm={(e) =>
-              this.setState({
-                popup_active_password: false,
               })
             }
           />
@@ -105,15 +95,6 @@ class UserProfile extends React.Component {
                   Hi Atif <span>Asim</span>
                 </h1>
                 <div className="butons_wrapper">
-                  {/* <button
-                    onClick={(e) => {
-                      this.setState({
-                        popup_active_password: true,
-                      });
-                    }}
-                  >
-                    Update Password
-                  </button> */}
                   <button
                     onClick={(e) => {
                       this.setState({
@@ -151,7 +132,6 @@ class UserProfile extends React.Component {
                       <Form.Control
                         type="text"
                         placeholder="First name"
-                        value="Adam"
                         readOnly
                       />
                     </Form.Group>
@@ -160,7 +140,6 @@ class UserProfile extends React.Component {
                       <Form.Control
                         type="text"
                         placeholder="Last name"
-                        value="Malik"
                         readOnly
                       />
                     </Form.Group>
@@ -169,70 +148,42 @@ class UserProfile extends React.Component {
                       <Form.Control
                         type="text"
                         placeholder="Username"
-                        value="AdamMalik123"
                         readOnly
                       />
                     </Form.Group>
                     <Form.Group className="mb-3" controlId="formBasicEmail">
                       <Form.Label>Email</Form.Label>
-                      <Form.Control
-                        type="text"
-                        placeholder="Email"
-                        value="AdamMalik123@gmail.com"
-                        readOnly
-                      />
+                      <Form.Control type="text" placeholder="Email" readOnly />
                     </Form.Group>
                     <Form.Group className="mb-3" controlId="formBasicEmail">
                       <Form.Label>Age</Form.Label>
-                      <Form.Control
-                        type="text"
-                        placeholder="Age"
-                        value="22"
-                        readOnly
-                      />
+                      <Form.Control type="text" placeholder="Age" readOnly />
                     </Form.Group>
                     <Form.Group className="mb-3" controlId="formBasicEmail">
                       <Form.Label>Gender</Form.Label>
-                      <Form.Control
-                        type="text"
-                        placeholder="Gender"
-                        value="Male"
-                        readOnly
-                      />
+                      <Form.Control type="text" placeholder="Gender" readOnly />
                     </Form.Group>
                     <Form.Group className="mb-3" controlId="formBasicEmail">
                       <Form.Label>Weight</Form.Label>
                       <Form.Control
                         type="text"
                         placeholder="AWeightge"
-                        value="78"
                         readOnly
                       />
                     </Form.Group>
                     <Form.Group className="mb-3" controlId="formBasicEmail">
                       <Form.Label>Height</Form.Label>
-                      <Form.Control
-                        type="text"
-                        placeholder="Height"
-                        value="170"
-                        readOnly
-                      />
+                      <Form.Control type="text" placeholder="Height" readOnly />
                     </Form.Group>
                     <Form.Group className="mb-3" controlId="formBasicEmail">
                       <Form.Label>BMI</Form.Label>
-                      <Form.Control
-                        type="text"
-                        placeholder="BMI"
-                        value="26"
-                        readOnly
-                      />
+                      <Form.Control type="text" placeholder="BMI" readOnly />
                     </Form.Group>
                     <Form.Group className="mb-3" controlId="formBasicEmail">
                       <Form.Label>Training Activity</Form.Label>
                       <Form.Control
                         type="text"
                         placeholder="Training Activity"
-                        value="1.2"
                         readOnly
                       />
                     </Form.Group>

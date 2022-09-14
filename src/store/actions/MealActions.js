@@ -21,14 +21,14 @@ export const getAllMeals = () => {
 
 export const addMeal = (formValues) => {
   countMe
-    .post("/api/Product/Create", { ...formValues }, { headers: authHeader() })
+    .post("/api/Meal/Create", { ...formValues }, { headers: authHeader() })
     .then((response) => {
       console.log(" Working");
 
-      toast.success("Successfully added new product");
+      toast.success("Successfully added new Meal");
     })
     .catch((error) => {
-      console.log("Not Working");
+      console.log("Not Working Meal");
       const errorMessage = error.response
         ? error.response.data.error
         : error.message;
@@ -118,7 +118,7 @@ export const updateMeals = (formValues, productId) => {
     });
 };
 
-export const MealsCalender = (formValues) => {
+export const MealsCalendar = (formValues) => {
   countMe
     .post(
       "/api/MealDay/AddMealToCalender",
@@ -131,7 +131,7 @@ export const MealsCalender = (formValues) => {
       toast.success("Successfully added to calender");
     })
     .catch((error) => {
-      console.log("Not Working");
+      console.log("Not Working Meal Calender");
       const errorMessage = error.response
         ? error.response.data.error
         : error.message;

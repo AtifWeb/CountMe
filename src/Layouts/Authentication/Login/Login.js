@@ -41,8 +41,7 @@ class Login extends React.Component {
   };
 
   onSubmit = (credentials) => {
-    console.log(credentials);
-    this.props.logIn();
+    this.props.logIn(credentials);
   };
 
   render() {

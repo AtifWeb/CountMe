@@ -2,7 +2,7 @@ import React from "react";
 import { NavLink } from "react-router-dom";
 import { connect } from "react-redux";
 import { Field, reduxForm } from "redux-form";
-import {Form} from 'react-bootstrap';
+import { Form } from "react-bootstrap";
 
 import "./../../../assets/scss/style.scss";
 import Aux from "../../../hoc/_Aux";
@@ -32,7 +32,7 @@ class Register extends React.Component {
     );
   };
 
-  onSubmit = credentials => {
+  onSubmit = (credentials) => {
     this.props.register(credentials);
   };
 
@@ -90,10 +90,26 @@ class Register extends React.Component {
                     placeholder="Age"
                     className="input-group mb-3"
                   />
-                  
+
                   <Form.Group>
-                    <Form.Check inline custom type="radio" label="Male"value="1" name="supportedRadios" id="supportedRadio3" />
-                    <Form.Check inline custom type="radio" label="Female" value="0" name="supportedRadios" id="supportedRadio4"/>
+                    <Form.Check
+                      inline
+                      custom
+                      type="radio"
+                      label="Male"
+                      value="1"
+                      name="supportedRadios"
+                      id="supportedRadio3"
+                    />
+                    <Form.Check
+                      inline
+                      custom
+                      type="radio"
+                      label="Female"
+                      value="0"
+                      name="supportedRadios"
+                      id="supportedRadio4"
+                    />
                   </Form.Group>
                   <Field
                     name="weight"
@@ -115,27 +131,33 @@ class Register extends React.Component {
                     component={this.renderInput}
                     placeholder="Training activity"
                     className="input-group mb-3"
-                   >
-                   <option disabled selected value> - wybierz z listy - </option>
-                       <option value="1.2">Mała</option>
-                       <option value="1.4">Średnia</option>
-                       <option value="1.6">Duża</option>
-                       <option value="1.8">Bardzo duża</option>
-                    </Field>
-                    
-                  <Form.Control 
-                  as="select"
+                  >
+                    <option disabled selected value>
+                      {" "}
+                      - wybierz z listy -{" "}
+                    </option>
+                    <option value="1.2">Mała</option>
+                    <option value="1.4">Średnia</option>
+                    <option value="1.6">Duża</option>
+                    <option value="1.8">Bardzo duża</option>
+                  </Field>
+
+                  <Form.Control
+                    as="select"
                     name="trainingActivity"
                     type="text"
                     component={this.renderInput}
                     placeholder="Training activity"
-                    className="mb-3" >
-                    
-                   <option disabled selected value> - wybierz z listy - </option>
-                       <option value="1.2">Mała</option>
-                       <option value="1.4">Średnia</option>
-                       <option value="1.6">Duża</option>
-                       <option value="1.8">Bardzo duża</option>
+                    className="mb-3"
+                  >
+                    <option disabled selected value>
+                      {" "}
+                      - wybierz z listy -{" "}
+                    </option>
+                    <option value="1.2">Mała</option>
+                    <option value="1.4">Średnia</option>
+                    <option value="1.6">Duża</option>
+                    <option value="1.8">Bardzo duża</option>
                   </Form.Control>
                   <button className="btn btn-primary shadow-2 mb-4">
                     Sign up
@@ -154,7 +176,7 @@ class Register extends React.Component {
   }
 }
 
-const validate = values => {
+const validate = (values) => {
   const errors = {};
   if (!values.firstName) {
     errors.firstName = "First name is required";
@@ -182,11 +204,11 @@ const validate = values => {
 
 const formWrapped = reduxForm({
   form: "register",
-  validate
+  validate,
 })(Register);
 
 const mapDispatchToProps = {
-  register: register
+  register: register,
 };
 
 export default connect(null, mapDispatchToProps)(formWrapped);

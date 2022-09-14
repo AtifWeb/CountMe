@@ -15,6 +15,10 @@ class AddForm extends React.Component {
     protein: 0,
     carbohydrate: 0,
     fat: 0,
+    saturatedFat: 0,
+    fibre: 0,
+    salt: 0,
+    isServing: true,
   };
 
   render() {
@@ -107,6 +111,56 @@ class AddForm extends React.Component {
               value={this.state.fat}
             />
           </Form.Group>
+
+          <Form.Group className="mb-3" controlId="formBasicEmail">
+            <Form.Label>Saturated Fat</Form.Label>
+            <Form.Control
+              type="text"
+              placeholder="Enter Saturated Fat"
+              onChange={(e) => {
+                this.setState({
+                  saturatedFat: e.target.value,
+                });
+              }}
+              value={this.state.saturatedFat}
+            />
+          </Form.Group>
+          <Form.Group className="mb-3" controlId="formBasicEmail">
+            <Form.Label>Fibre</Form.Label>
+            <Form.Control
+              type="text"
+              placeholder="Enter fibre"
+              onChange={(e) => {
+                this.setState({
+                  fibre: e.target.value,
+                });
+              }}
+              value={this.state.fibre}
+            />
+          </Form.Group>
+          <Form.Group className="mb-3" controlId="formBasicEmail">
+            <Form.Label>salt</Form.Label>
+            <Form.Control
+              type="text"
+              placeholder="Enter salt"
+              onChange={(e) => {
+                this.setState({
+                  salt: e.target.value,
+                });
+              }}
+              value={this.state.salt}
+            />
+          </Form.Group>
+          <Form.Group className="mb-3" controlId="formBasicEmail">
+            <Form.Label>salt</Form.Label>
+            <Form.Control
+              type="text"
+              placeholder="Enter salt"
+              value={true}
+              readOnly
+            />
+          </Form.Group>
+
           <Button
             variant="primary"
             type="submit"
@@ -119,11 +173,11 @@ class AddForm extends React.Component {
                 calories: Number(this.state.calories),
                 protein: Number(this.state.protein),
                 carbohydrate: Number(this.state.carbohydrate),
-                sugar: 0,
+                sugar: Number(this.state.sugar),
                 fat: Number(this.state.fat),
-                saturatedFat: 0,
-                fibre: 0,
-                salt: 0,
+                saturatedFat: Number(this.state.saturatedFat),
+                fibre: Number(this.state.fibre),
+                salt: Number(this.state.salt),
                 isServing: true,
               });
             }}

@@ -80,9 +80,19 @@ File: style.css
   padding: 1.5rem;
   border-radius: 10px;
   padding-top: 3rem;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-gap: 10px;
   position: relative;
 }
+.CalendarAdd > form {
+  grid-template-columns: 1fr;
+  grid-gap: 0px;
+}
 
+.CountProfile > form .btn {
+  max-height: 50px;
+}
 .CountProfile .close_icon {
   position: absolute;
   top: 20px;
@@ -101,6 +111,7 @@ File: style.css
   box-shadow: rgba(17, 17, 26, 0.05) 0px 1px 0px,
     rgba(17, 17, 26, 0.1) 0px 0px 8px;
   height: 100vh;
+  z-index: 9999;
   padding: 2rem 1rem;
 }
 .SidebarDashboard > h1 {

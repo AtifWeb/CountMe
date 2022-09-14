@@ -11,7 +11,7 @@ const INITIAL_STATE = {
   familyMembers: {},
   fetchingData: false,
   errors: null,
-  editingFamilyMember: {}
+  editingFamilyMember: {},
 };
 
 export default (state = INITIAL_STATE, action) => {
@@ -22,13 +22,13 @@ export default (state = INITIAL_STATE, action) => {
       return {
         ...state,
         userDetails: action.payload,
-        fetchingData: false
+        fetchingData: false,
       };
     case GET_USER_PROFILE_ERROR:
       return {
         ...state,
         fetchingData: false,
-        errors: action.payload
+        errors: action.payload,
       };
 
     case LOG_OUT:

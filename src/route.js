@@ -13,7 +13,7 @@ const AddProduct = React.lazy(() => import("./Layouts/Dashboard/AddProduct"));
 const FavoritesProducts = React.lazy(() =>
   import("./Layouts/Dashboard/FavoritesProducts")
 );
-const Calender = React.lazy(() => import("./Layouts/Dashboard/Calender"));
+const Calendar = React.lazy(() => import("./Layouts/Dashboard/Calendar"));
 const FavoritesMeal = React.lazy(() =>
   import("./Layouts/Dashboard/FavoritesMeal")
 );
@@ -36,7 +36,7 @@ const route = [
     component: FavoritesMeal,
   },
 
-  { path: "/Calender", exact: true, name: "Calender", component: Calender },
+  { path: "/Calendar", exact: true, name: "Calendar", component: Calendar },
   {
     path: "/AddProduct",
     exact: true,

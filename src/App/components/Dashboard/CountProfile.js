@@ -14,7 +14,7 @@ class CountProfile extends React.Component {
 
   render() {
     return (
-      <div className="CountProfile">
+      <div className="CountProfile CalendarAdd">
         <Form>
           <span
             className="close_icon"

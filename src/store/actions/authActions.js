@@ -14,16 +14,15 @@ export const logIn = (credentials) => (dispatch) => {
   countMe
     .post("/api/User/Authenticate/authenticate", credentials)
     .then((response) => {
-      console.log("working");
       dispatch({
         type: LOG_IN_SUCCESS,
         payload: response.data.token,
       });
       toast.success("Successfully signed in!");
       localStorage.setItem("user", response.data.token);
+      window.location.href = "/home";
     })
     .catch((error) => {
-      console.log("Not working");
       const errorMessage = error.response
         ? error.response.data.error
         : error.message;
@@ -38,19 +37,18 @@ export const logOut = () => (dispatch) => {
   toast.info("Signed out");
   localStorage.removeItem("user");
   countMe.post("/api/User/Logout");
+  window.location.href = "/login";
 };
-
 export const register = (credentials) => (dispatch) => {
   countMe
     .post("/api/User/Register/register", credentials)
     .then((response) => {
-      console.log("working");
       dispatch({ type: REGISTER_SUCCESS, payload: response.data.token });
       toast.success("Successfully signed up!");
       localStorage.setItem("user", response.data.token);
+      window.location.href = "/home";
     })
     .catch((error) => {
-      console.log("Not working");
       const errorMessage = error.response
         ? error.response.data.error
         : error.message;

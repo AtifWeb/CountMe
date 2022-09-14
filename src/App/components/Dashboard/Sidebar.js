@@ -46,11 +46,11 @@ class Sidebar extends React.Component {
           </li>
           <li>
             <Link
-              to="/Calender"
+              to="/Calendar"
               className={this.props.header_active === 3 && "active"}
             >
               <AddAlarmIcon />
-              Add to calender
+              Add to calendar
             </Link>
           </li>
           <li>

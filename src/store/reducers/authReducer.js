@@ -5,7 +5,7 @@ import {
   LOG_OUT,
   REGISTER_REQUEST,
   REGISTER_SUCCESS,
-  REGISTER_ERROR
+  REGISTER_ERROR,
 } from "../actions/types";
 
 let token = localStorage.getItem("user");
@@ -14,7 +14,7 @@ const INITIAL_STATE = token
   ? {
       isLoggedIn: true,
       token: token,
-      loggingIn: false
+      loggingIn: false,
     }
   : { isLoggedIn: false, token: null, loggingIn: false };
 
@@ -27,7 +27,7 @@ export default (state = INITIAL_STATE, action) => {
         ...state,
         isLoggedIn: true,
         token: action.payload,
-        loggingIn: false
+        loggingIn: false,
       };
     case LOG_IN_ERROR:
       return {
@@ -35,7 +35,7 @@ export default (state = INITIAL_STATE, action) => {
         isLoggedIn: false,
         token: null,
         loggingIn: false,
-        errors: action.payload
+        errors: action.payload,
       };
     case LOG_OUT:
       return { ...state, isLoggedIn: false, token: null };

@@ -39,7 +39,7 @@ export const addProduct = (formValues) => {
       toast.success("Successfully added new product");
     })
     .catch((error) => {
-      console.log("Not Working");
+      console.log("Not Working product add");
       const errorMessage = error.response
         ? error.response.data.error
         : error.message;
@@ -48,7 +48,7 @@ export const addProduct = (formValues) => {
     });
 };
 
-export const ProductCalender = (formValues) => {
+export const ProductCalendar = (formValues) => {
   countMe
     .post(
       "/api/ProductDay/AddProductToCalender",
@@ -61,7 +61,7 @@ export const ProductCalender = (formValues) => {
       toast.success("Successfully added to calender");
     })
     .catch((error) => {
-      console.log("Not Working");
+      console.log("Not Working Product Calender");
       const errorMessage = error.response
         ? error.response.data.error
         : error.message;

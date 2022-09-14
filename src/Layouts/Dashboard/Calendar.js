@@ -7,9 +7,9 @@ import Sidebar from "../../App/components/Dashboard/Sidebar";
 import FullCalendar from "@fullcalendar/react"; // must go before plugins
 import dayGridPlugin from "@fullcalendar/daygrid"; // a plugin!
 import interactionPlugin from "@fullcalendar/interaction"; // needed for dayClick
-import CalenderAdd from "../../App/components/Dashboard/CalenderAdd";
+import CalendarAdd from "../../App/components/Dashboard/CalendarAdd";
 import MenuIcon from "@material-ui/icons/Menu";
-class Calender extends React.Component {
+class Calendar extends React.Component {
   state = {
     popup_active: false,
     sidebarMBL: false,
@@ -33,7 +33,7 @@ class Calender extends React.Component {
           />
         </div>
         {this.state.popup_active && (
-          <CalenderAdd
+          <CalendarAdd
             ClosePopForm={(e) =>
               this.setState({
                 popup_active: false,
@@ -61,4 +61,4 @@ const mapDispatchToProps = (dispatch) => {
   };
 };
 
-export default connect(mapDispatchToProps)(Calender);
+export default connect(mapDispatchToProps)(Calendar);
